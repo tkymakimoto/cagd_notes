@@ -1,5 +1,24 @@
+![](https://raw.githubusercontent.com/tkymakimoto/cagd_notes/master/IMG_20140601_001010.jpg "Test image")
+
 # 曲線表現
 
+曲線を表現する方法は無数にあり、用途によってさまざまに発展してきた。一般的には多数の点（点群）を結ぶ方法の違いによって
+
+## ポリライン
+
+点群から作成される曲線で最も単純な表現方法は、各2点間を線分（線形）に結ぶ方法である。
+
+## ラグランジュ曲線
+
+点群を一つの$(点数-1)$次の多項関数で表現する方法。
+
+\begin{eqnarray}
+x(t) & = & \sum_{j=0}^{N-1} a_jt^{j} \nonumber \\
+y(t) & = & \sum_{j=0}^{N-1} b_jt^{j} \\
+z(t) & = & \sum_{j=0}^{N-1} c_jt^{j}  \nonumber \\
+\end{eqnarray}
+
+ここで、$t$：パラメータ、$a_j$：$j$次の係数、$N$：点数
 
 - 累乗型
 - ブレンディング関数型
@@ -18,9 +37,9 @@ int main(int argc, char** argv){
     
 ##累乗型曲線
 
-\\[
+\begin{eqnarray}
 \mathbf{r}(t) = \sum_{j=0}^{n} a_jt^{j} 
-\\]
+\end{eqnarray}
 
 ### Cubic spline
 ### PARSEC 
