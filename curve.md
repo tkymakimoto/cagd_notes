@@ -81,11 +81,11 @@ x & = & y
 \end{array}
 
 
-The NURBS ⧸⧸Book⧸⧸book⧸⧸ p.9 1.3 Bézier Curves
+The NURBS Book p.9 1.3 Bézier Curves
 
 > The power basis form has the following disadvantages.
 
-> - it is unnatural for interactive shape design; the coefficients ${a_i}$ convey very little geometric insight about the shape of the curve. Furthermore, a designer typically wants to specify end conditions at both ends of the curve, not just at the ⧸⧸starting⧸⧸strting⧸⧸ point;
+> - it is unnatural for interactive shape design; the coefficients ${a_i}$ convey very little geometric insight about the shape of the curve. Furthermore, a designer typically wants to specify end conditions at both ends of the curve, not just at the starting point;
 
 > -  algorithms for processing power basis polynomials have an algebraic rather than a geometric flavor (e.g., Horner's method);
 
