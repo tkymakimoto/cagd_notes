@@ -2,7 +2,33 @@
 
 # 曲線表現
 
-曲線を表現する方法は無数にあり、用途によってさまざまに発展してきた。一般的には多数の点（点群）を結ぶ方法の違いによって
+曲線を表現する方法は無数にあり、用途によってさまざまに発展してきた。一般的に曲線表現法は、多数の点（点群、離散点）を結ぶ方法の違いによってその特徴が現れる。
+
+## 陽的表現（Explicit representation）
+
+\begin{eqnarray}
+y & = & f(x) \\
+z & = & g(x)
+\end{eqnarray}
+
+## 陰的表現（Implicit representation）
+
+\begin{eqnarray}
+f(x, y, z) = 0
+\end{eqnarray}
+
+## パラメトリック表現（Parametric representation）
+
+\begin{eqnarray}
+\mathbf{r} & = & \mathbf{r}(t) \\
+\mathbf{r}(t) & = & [\begin{array}{ccc} x(t) & y(t) & z(t)\end{array}]
+\end{eqnarray}
+
+# スプライン
+
+* 離散点（点群）
+* 区分多項式
+* 滑らか
 
 ## ポリライン
 
@@ -10,7 +36,7 @@
 
 ## ラグランジュ曲線
 
-点群を一つの$(点数-1)$次の多項関数で表現する方法。
+点群を一つの$(\mbox{点数}-1)$次の多項式で表現する方法。
 
 \begin{eqnarray}
 x(t) & = & \sum_{j=0}^{N-1} a_jt^{j} \nonumber \\
@@ -18,21 +44,10 @@ y(t) & = & \sum_{j=0}^{N-1} b_jt^{j} \\
 z(t) & = & \sum_{j=0}^{N-1} c_jt^{j}  \nonumber \\
 \end{eqnarray}
 
-ここで、$t$：パラメータ、$a_j$：$j$次の係数、$N$：点数
+ここで、$t$：パラメータ、$a_j \: b_j \: c_j$：$x(t), \: y(t), \: z(t)$における$j$次の係数、$N$：点数である。
 
 - 累乗型
 - ブレンディング関数型
-
-
-```cpp
-#include <cstdlib>
-
-int main(int argc, char** argv){
-	double y;
-	std::vector<double> v;
-	return EXIT_SUCCESS;
-}
-```
 
     
 ##累乗型曲線
