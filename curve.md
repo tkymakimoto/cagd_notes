@@ -86,9 +86,14 @@ B_{j,n-1}(t)&：&バーンスタイン関数 \nonumber \\
 ### B-spline
 
 \begin{eqnarray}
-\mathbf{r}(t) & = & \sum_{j=0}^{n-1}N_{j,p}(t)\mathbf{Q}_j \\
-x & = & y
+\mathbf{r}(t) & = & \sum_{j=0}^{N-1}N_{j,p}(t)\mathbf{Q}_j \\
+\mathbf{T} & = & [\begin{array}{cccc} t_0 & t_1 & \cdots & t_{N-1}\end{array}] \\
 \end{eqnarray}
+
+\begin{eqnarray*}
+N_{j,0}(t) & = & \left \{ \begin{array}{ll} 1 & (t_j \le t \lt t_{j+1}) \\ 0 & \mbox{otherwise} \end{array}  \right . \\
+N_{j,p}(t) & = & \frac{t - t_{j}}{t_{j+p} - t_j}N_{j,p-1}(t) + \frac{t_{j+p+1} - t}{t_{j+p+1} - t_{j+1}}N_{j+1,p-1}(t)
+\end{eqnarray*}
 
 \begin{array}{cc}
   a & b \\
