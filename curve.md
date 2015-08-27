@@ -21,10 +21,10 @@ f(x, y, z) = 0
 
 \begin{eqnarray}
 \mathbf{r} & = & \mathbf{r}(t) \\
-\mathbf{r}(t) & = & [\begin{array}{ccc} x(t) & y(t) & z(t)\end{array}]
+\mathbf{r}(t) & = & \left[ \begin{array}{ccc} x(t) & y(t) & z(t)\end{array} \right]
 \end{eqnarray}
 
-# スプライン
+## スプライン
 
 * 離散点（点群）
 * 区分多項式
@@ -39,33 +39,27 @@ f(x, y, z) = 0
 点群を一つの$(\mbox{点数}-1)$次の多項式で表現する方法。
 
 \begin{eqnarray}
-x(t) & = & \sum_{j=0}^{N-1} a_jt^{j} \nonumber \\
-y(t) & = & \sum_{j=0}^{N-1} b_jt^{j} \\
-z(t) & = & \sum_{j=0}^{N-1} c_jt^{j}  \nonumber \\
+x(t) & = & \sum_{j=0}^{n-1} a_jt^{j} \nonumber \\
+y(t) & = & \sum_{j=0}^{n-1} b_jt^{j} \\
+z(t) & = & \sum_{j=0}^{n-1} c_jt^{j}  \nonumber \\
 \end{eqnarray}
 
-ここで、$t$：パラメータ、$a_j \: b_j \: c_j$：$x(t), \: y(t), \: z(t)$における$j$次の係数、$N$：点数である。
-
-- 累乗型
-- ブレンディング関数型
-
-    
-##累乗型曲線
+ここで、$t$：パラメータ、$a_j \: b_j \: c_j$：$x(t), \: y(t), \: z(t)$における$j$次の係数、$n$：点数である。
 
 \begin{eqnarray}
 \mathbf{r}(t) = \sum_{j=0}^{n} a_jt^{j} 
 \end{eqnarray}
 
-### Cubic spline
-### PARSEC 
+## Cubic spline
+## PARSEC 
+
+PARSECは、航空機の翼型設計でよく用いられている曲線である。上下面それぞれ下記の式で定義する。
 
 $$
 z(x) = \sum_{j=0}^{p-1}a_j x^{j+\frac{1}{2}}
 $$
 
-
-##ブレンディング関数型曲線
-### Bézier曲線
+## Bézier曲線
 
 \eqref{eq:1}
 
@@ -81,24 +75,33 @@ B_{j,n-1}(t)&：&バーンスタイン関数 \nonumber \\
 \mathbf{Q}_j&：&j番目の制御点 \nonumber \\
 \end{eqnarray}
 
-\eqref{eq:bezier}式からも分かるように、$\mbox{曲線の次数}+1(階数) = \mbox{制御点数}$となる。このBe一般的に一つのセグメントで表現しようとする。
+\eqref{eq:bezier}式からも分かるように、$(\mbox{曲線の次数}+1) = \mbox{制御点数}$、または、$\mbox{曲線の階数} = \mbox{制御点数}$となる。
 
-### B-spline
+## B-spline
 
 \begin{eqnarray}
-\mathbf{r}(t) & = & \sum_{j=0}^{N-1}N_{j,p}(t)\mathbf{Q}_j \\
-\mathbf{T} & = & [\begin{array}{cccc} t_0 & t_1 & \cdots & t_{N-1}\end{array}] \\
+\mathbf{r}(t)  =  \sum_{j=0}^{n-1}N_{j,p}(t)\mathbf{Q}_j \\
+n & : & 制御点数 \nonumber \\
+p &: & 次数 \nonumber \\
+N_{j,p}(t) & : & 基底関数　\nonumber \\
+\mathbf{Q}_j & : & 制御点 \nonumber
 \end{eqnarray}
 
+基底関数は以下のとおりである。
+
+\begin{eqnarray}
+N_{j,0}(t) & = & \left \{ \begin{array}{ll} 1 & (t_j \le t \lt t_{j+1}) \\ 0 & \mbox{otherwise} \end{array}  \right . \nonumber \\
+\\
+N_{j,p}(t) & = & \frac{t - t_{j}}{t_{j+p} - t_j}N_{j,p-1}(t) + \frac{t_{j+p+1} - t}{t_{j+p+1} - t_{j+1}}N_{j+1,p-1}(t) \nonumber \\
+\end{eqnarray}
+
+$t_j \: (j = \begin{array}{cccc}0, & 1, & \cdots & p+n \end{array})$は、ノットベクトル$\mathbf{T}$
+
 \begin{eqnarray*}
-N_{j,0}(t) & = & \left \{ \begin{array}{ll} 1 & (t_j \le t \lt t_{j+1}) \\ 0 & \mbox{otherwise} \end{array}  \right . \\
-N_{j,p}(t) & = & \frac{t - t_{j}}{t_{j+p} - t_j}N_{j,p-1}(t) + \frac{t_{j+p+1} - t}{t_{j+p+1} - t_{j+1}}N_{j+1,p-1}(t)
+\mathbf{T} = \left[ \begin{array}{cccc} t_0 & t_1 & \cdots & t_{p+n}\end{array} \right] \\
 \end{eqnarray*}
 
-\begin{array}{cc}
-  a & b \\
-  c & c
-\end{array}
+
 
 
 The NURBS Book p.9 1.3 Bézier Curves
@@ -112,7 +115,7 @@ The NURBS Book p.9 1.3 Bézier Curves
 > - numerically, it is a rather poor form; e.g., Horner's method is prone to round-off error if the coefficients vary greatly in magnitude.
 
 日本語訳
-> 累乗型は、次の面で不利がある。
+> 累乗型は、次のような欠点がある。
 
 > - 会話的デザインで不自然。曲線の形状における係数$a_i$の寄与（影響度）はとても小さい。さらに、デザイナーは一般的に始点だけでなく曲線の両端をいじりたい。
 
